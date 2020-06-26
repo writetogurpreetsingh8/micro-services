@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "product.catelogue.service",
+    "type": "java.lang.String",
+    "description": "A description for 'product.catelogue.service'"
+  },
+  {
+    "name": "cart.ms.service",
+    "type": "java.lang.String",
+    "description": "A description for 'cart.ms.service'"
+  },
+  {
+    "name": "recommandation.ms.service",
+    "type": "java.lang.String",
+    "description": "A description for 'recommandation.ms.service'"
+  },
+  {
+    "name": "cart.service",
+    "type": "java.lang.String",
+    "description": "A description for 'cart.service'"
+  },
+  {
+    "name": "recommandation.service",
+    "type": "java.lang.String",
+    "description": "A description for 'recommandation.service'"
+  }
+]}

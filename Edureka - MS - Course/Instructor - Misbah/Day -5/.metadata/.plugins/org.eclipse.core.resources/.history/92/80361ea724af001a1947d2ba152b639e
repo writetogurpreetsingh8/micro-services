@@ -1,0 +1,31 @@
+package com.example.currencyexchangeservice.controllers;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jms.annotation.JmsListener;
+
+import com.example.currencyexchangeservice.entities.ExchangeValue;
+import com.example.currencyexchangeservice.repositories.CurrencyExchangeRepository;
+
+public class CurrenyExchangeController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(CurrenyExchangeController.class);
+
+	@Value("${server.port}")
+	private int serverPort;
+	
+	@Autowired
+	private CurrencyExchangeRepository currencyExchangeRepository;
+	
+	@JmsListener(destination = "concurrency-exchange-queue")
+	private void retrieveValue( String from, String to) {
+		
+		LOGGER.info("current exchange.........controller ..................");
+		ExchangeValue ev = currencyExchangeRepository.findByFromAndTo(from, to);
+		ev.setPort(serverPort);
+		LOGGER.info("current exchange .......... db data is .........{}",ev);
+		//return ResponseEntity.ok(new ExchangeValue(1000L,from,to,BigDecimal.valueOf(67.80),serverPort));
+	}
+}

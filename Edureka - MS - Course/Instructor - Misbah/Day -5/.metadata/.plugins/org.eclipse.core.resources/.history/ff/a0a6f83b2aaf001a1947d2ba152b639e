@@ -1,0 +1,77 @@
+package com.in28minutes.microservices.concurrenyconversionservice.controllers;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Queue;
+import javax.jms.Session;
+
+import org.apache.activemq.command.ActiveMQMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.in28minutes.microservices.concurrenyconversionservice.beans.ConcurrenyConversionBean;
+
+@RestController
+public class ConcurrenyConversionController {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConcurrenyConversionController.class);
+	
+	@Value("${server.port}")
+	private int port;
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	@Autowired
+	private Queue concurrenyExchangeQueue;
+	
+	
+	@GetMapping(value="/concurrenyConversion/from/{from}/to/{to}/quantity/{quantity}")
+	private ResponseEntity<ConcurrenyConversionBean> convertConcurreny(@PathVariable("from") String from,@PathVariable("to") String to,@PathVariable("quantity") BigDecimal quantity) {
+	
+		return ResponseEntity.ok(new ConcurrenyConversionBean(10009L, from, to, 
+				BigDecimal.valueOf(78.90), quantity, (quantity.multiply(BigDecimal.valueOf(78.90))), port));
+		
+	}
+	
+	@GetMapping(value="/concurrenyConversionQueue/from/{from}/to/{to}/quantity/{quantity}")
+	private ResponseEntity<ConcurrenyConversionBean> convertConcurrenyFeign(@PathVariable("from") String from,@PathVariable("to") String to,@PathVariable("quantity") BigDecimal quantity) throws JMSException {
+	
+		LOGGER.info(" concurrency conversion controller .............  response is ............................");
+		
+		Message message = jmsTemplate.sendAndReceive("concurreny-exchange-queue", new MessageCreator() {
+			
+			@Override
+			public Message createMessage(Session session) throws JMSException {
+				return session.createTextMessage(from+"#"+to);
+			}
+		});
+
+		String response = message.getBody(String.class);
+		ConcurrenyConversionBean newBean = new ConcurrenyConversionBean(1L,from,to,
+				new BigDecimal(response),quantity,quantity.multiply(new BigDecimal(response)),0000);
+		
+		return ResponseEntity.ok(newBean);
+	}
+	
+	/*
+	 * @JmsListener(destination = "concurreny-exchange-queue") private String
+	 * retreiveValueFromQueue(String exchangeValue) {
+	 * LOGGER.info("receive exchange value from queueu......... {} ",exchangeValue);
+	 * return exchangeValue; }
+	 */
+	
+	
+}

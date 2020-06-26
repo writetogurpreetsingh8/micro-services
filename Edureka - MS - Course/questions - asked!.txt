@@ -1,0 +1,248 @@
+
+what is Twelve Factor Principles ?
+syn & asyn communications
+
+what is dsl grammer in spring-data-jpa
+
+how we can done tx management in ms?
+how we can done exception handling in ms?
+ByDefault every MS (if having eureka-netflix-client jar) looking for MS(eurka-netflix-server) , So how we can make them stop / change its default behaviour?
+how to configure Actuator dashboard , hystrix dashboard and another dashboard also
+how to setup eureka-netflix-client and eurka-netflix-server on different machines... with having user defined port and urls.......
+how to mention application name and servlet.context.path in the config-server becoz when we passing for the same config-client not able to access config-server ??
+how to change the config-server port becoz when we changed default port(8888) config-client not able to fetch data from ......
+how to control the logs of ms , eureka-netflix-client and eurka-netflix-server , continues dislays how to stop or control ????????
+how we can use ms specific , profile/env specific and default file(application.properties) all together ?
+how to dockerzie the application and orchestrate it 
+tools like zapkin sluth
+
+what is resource expension and protocol conversion in zuul proxy?
+
+Response must be retured with hypermedia control (HATOS) only in case of post operation,  no need to add hataos in the response while deleting , updating and getting the response , right ????
+
+
+07/JUN/2020
+
+can you explain , actually I am little bit confused b/w them 
+difference b/w event driven , message driven and domain driven , are they all related / depended on each-other ??? 
+
+difference b/w choreography and orchestrate ? 
+
+why we need to maintain the saga logs into kafa, wouldn't it save into saga itself only and I think its temporary logs 
+so we shouldn't have need to save them , is it right ??? 
+
+
+13/JUN/2020
+
+
+how we can confiure zuul api gateway while calling 1 ms another ms???????????????
+
+why we need to hide the url of ms because at the frot of ms we have api-gate way and we also have LB at the front of api-gate ?????
+Q what is dynamic routing in the zuul ?
+Q if we  put logging in the zuul level than can't we have logging in the micro-service's level ?
+Q what is the role of traceId in slueth logs
+
+I have a doubt regarding proxy-pattern , if end-user going to invoke dns url(enterprise url) then call goes to loadbalancer , 
+loadbalacener invoke api-gateway and api-gatway  invokes the micro-services that means no one is going to invoke ms 
+direcly from out - side world then why we need of url hiding (Proxy patterns) ,, Pl explain once ....... 
+
+when to use defaultFallback and fallbackmethod ??????? 
+
+suppose if we encounter any checked exception while procesing busniess logic so 
+in this case can we implement hystrix to handle it ? or we should handle exception as previously we did ??? 
+
+how we can intercept the request in b/w micro-service to implements some common busniess logic ?????
+
+what would be the url in webhook ????
+
+if we have 10 services and we want to store config on the git-hub, so would be create 10
+different repo or just one ???? 
+
+http://localhost:9999/product-catelogue-ms/default
+
+Hi, misbah
+Actually some hands-on  are left under micro-service Design Section
+which are mentioned in the curriculum of this course
+
+Hands-on
+
+Adding Items to Mongo DB
+Querying Mongo
+Connecting to an Elasticsearch Server
+Searching our Elasticsearch Server
+
+
+14-06-2020
+
+oauth is only used for thrid-party login or single sign on ???????????????
+why referesh toke is not valid in case of servies ???
+
+why we need access token again & again, becoz when user has been valid 
+and logged into the system,  client can store the basic
+info into its DB which is provide by resource-server, so that when user
+again come to client system client can identify him, right ????  ,, 
+
+you store jwt token in-memory , can we use DB for
+the same , or what approach would be the best one ??
+
+if user logins into web-app via browsers and 
+he again logins into same application via mobile aap this time 
+now what will happened ???, there are two tokens 
+associataed with the same user , then in this case if user logged out from mobile aap 
+will i invalidate a that particul  token only
+
+why you make apigateway and payment service as 
+a resource-server , we have seperate resource-server here 
+
+
+20-06-2020
+
+Q1) As u created two queues in the mq-server becoz we have two ms but in case we have 1 more ms
+then would we need to changed the code of server to add one more queue,,,? or having 
+losely coupled approached ??????????????
+
+
+Q2) instead of config-server tells the services about config changes
+we have introduced the bus all the services are listing the bus and config-server tell the changes to bus only
+but there is also network calls (from all services to bus , and bus and services would be on different machine)
+how this model is better then config-server direct talk to servies to tell them changes regarding config
+
+Q3) while making communications in b/w service by using messaging-queue, do we need eureka-server ????? 
+if yes why , if no then why ????
+
+=================================================================================================================
+
+Q4) what is difference oauth2.0 and jwt , when to use what ??????????????
+
+Q5) How can i invalidate a jwtoken forcefully when i call logout or security breach ? .
+
+Q6) if user logged out and we have invalidate the token which is stored
+in the DB, but if user tries to invoke any url and passing token 
+then how server will come to know that this token has been invalidate previously 
+
+that means we have to make db hit for eevery request, without
+db hit how will come to know that , this token has been invalidate??
+
+Q7) when we use blacklist a JWT. ???
+
+Q8) if user token was compromised how we invalid all tokens associataed that user!
+
+Ability to force log out all users.
+Ability to force log out any individual at any time.
+Ability to require password re-entry after a certain amount of time.
+Ability to work with multiple clients.
+Ability to force a re-log in when a user clicks logout from a particular client. 
+
+Q9) how to use oauthtemplate with feign ????
+
+Q10) why we have @enableResoureServer annotation in the oauth-server micro-server becoz
+oauth-server micro-server is just a Autherization server.........?
+
+Q11) why we have @enableResoureServer in api-gateway,becoz its just api-gateway doesn't have any resource to server. ?
+
+Q12) when api-gateway doesn't need to talk to oauth-server then why we put its entry in api-gateway's properties file,
+infact each service has security.oauth2.resource.user-info-uri=http://oauth-server/user what is use of this ?
+
+Q13) why we need to hit authorization-server first to get the token and then invoke another services(vai gateway),
+how it would be happened in real time, because end user would have enterprise url only how would he
+invoke authorization-server to get the token ?????  
+
+Q14) we are just passing/using the token then how its checked against its scope.. becoz
+we are not using entire oauth-token that is given by oauth-server? 
+
+Q15) when creating oauthresttemplate we are accessing oauth-server directly , how can we communicate with
+via eureka-server????
+
+
+20-06-2020
+
+how to test the ms if we have put security on that ???? 
+
+does we implemenents asych communications b/w MS ???????
+messaging endpoints
+twelve factor principle
+ Dynamic Routing
+Distributed Sessions
+Need for Event Driven Systems
+
+21-06-2020
+its looks like more tough to develop the code
+and test whether its working on cloud or container,
+if not then fix them again over again ??
+
+
+in autoscalling vm instances are getting replicated, 
+but what about if i want to increase the number of instances of MS,,   ????? 
+it would be increased within the same vm or different one ???? 
+
+
+how userms and orderms knows that there is another eureka
+is also up and running ????
+
+what is throatling , rate limit, can u explain 
+how we can implemnet them ??
+
+
+what is difference b/w docker and kubarnets ,
+
+ I am very much confuesed ?? what is kubarnets used for ??
+
+how to create docker file ???
+
+As you said N replications of MS, we need N different VM machines,
+but earlier u said within the same VM we can have multiple 
+docker containers.
+
+in last class we were discussing, how userMS can use 
+eurkea-server to get the instance of oauth-server , do u rememeber ? 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

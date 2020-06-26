@@ -1,0 +1,17 @@
+server.port=8080
+spring.application.name=apigateway
+
+eureka.client.serviceUrl.defaultZone=http://localhost:4444/eureka-server/eureka
+ribbon.eureka.enabled=true
+#Zuul Properties
+management.endpoints.web.exposure.include=*
+#management.endpoints.web.exposure.exclude=*
+
+#http://localhost:8080/actuator/routes is controlled by zuul.ignored-services
+#zuul.ignored-services=orderms,userms,paymentms
+zuul.routes.ordermsid.serviceId=orderms
+zuul.routes.ordermsid.path=/dummy-orderms/**
+
+#oAuth2
+security.oauth2.resource.user-info-uri=http://oauth-server/user
+security.oauth2.resource.loadBalanced=true

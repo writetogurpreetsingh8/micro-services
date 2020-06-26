@@ -1,0 +1,7 @@
+server.port=9000
+spring.application.name=oauth-server
+#Eureka Config
+eureka.client.serviceUrl.defaultZone=http://localhost:4444/eureka-server/eureka
+
+# deprecated since spring boot-2
+security.basic.enabled=false

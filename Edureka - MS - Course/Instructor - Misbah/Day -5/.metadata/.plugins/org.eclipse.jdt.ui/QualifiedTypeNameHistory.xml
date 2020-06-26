@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.jms.annotation.JmsListener"/>
+<fullyQualifiedTypeName name="org.apache.activemq.command.ActiveMQMessage"/>
+<fullyQualifiedTypeName name="org.springframework.jms.core.MessageCreator"/>
+<fullyQualifiedTypeName name="java.math.BigInteger"/>
+<fullyQualifiedTypeName name="javax.jms.Message"/>
+<fullyQualifiedTypeName name="org.springframework.jms.annotation.EnableJms"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Qualifier"/>
+<fullyQualifiedTypeName name="org.springframework.context.annotation.Configuration"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="javax.jms.TextMessage"/>
+</qualifiedTypeNameHistroy>

@@ -1,0 +1,30 @@
+server.port=8081
+# for spring-boot 1.x
+#server.context-path=/userms
+# for spring-boot 2.x
+server.servlet.context-path=/userms
+spring.application.name=userms
+
+#H2-Inmemory DB-condole --> http://localhost:8081/h2-console
+spring.h2.console.enabled=true
+#Hibernate/JPA
+spring.jpa.show-sql=true
+
+eureka.client.serviceUrl.defaultZone=http://localhost:4444/eureka-server/eureka
+#feign.hystrix.enabled=true
+#hystrix.shareSecurityContext=true
+
+#For integration with config-server
+#Rabbitmq
+spring.rabbitmq.host=localhost
+spring.rabbitmq.port=5672
+spring.rabbitmq.username=guest
+spring.rabbitmq.password=guest
+
+#config-server default
+my-property=dummy
+your-property=dummy
+
+#server.port=8085
+spring.activemq.broker-url=tcp://localhost:8161
+spring.activemq.in-memory=false
