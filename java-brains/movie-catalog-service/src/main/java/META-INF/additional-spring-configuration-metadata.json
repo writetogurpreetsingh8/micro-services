@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "rating.data.service.url",
+    "type": "java.lang.String",
+    "description": "A description for 'rating.data.service.url'"
+  },
+  {
+    "name": "movie.info.service.url",
+    "type": "java.lang.String",
+    "description": "A description for 'movie.info.service.url'"
+  }
+]}
